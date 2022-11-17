@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/styles.css"> -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body style="background-color:#c7abd8">
+
+	<header class="main">
+		<div class="container">
+		<div id="brandname">
+			 Email Finder and Verifier Tool
+		</div>
+		<h2 style="color:#DDD;background-color:#333;">provide the LinkedIn profile to get their Email and it's state</h2>
+
+	</div>
+	</header>
+
+	<div class="ml-container">
+
+		<form action="{{ url_for('Reveal_Email')}}" method="POST">
+		<p>Enter LinkedIn full name</p>
+		<!-- <input type="text" name="comment"/> -->
+		<textarea name="name" rows="1" cols="50"></textarea>
+		<br/>
+		<p>Enter company domain</p>
+		<!-- <input type="text" name="comment"/> -->
+		<textarea name="domain" rows="1" cols="50"></textarea>
+		<br/>
+		<input type="submit" class="btn-info" value="Reveal_Email">
+		
+	</form>
+		
+	</div>
+
+	
+	
+
+</body>
+</html>
