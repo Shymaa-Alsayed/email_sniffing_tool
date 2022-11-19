@@ -21,19 +21,18 @@ def home():
 @app.route('/Reveal_Email', methods=['POST'])
 def Reveal_Email():
     display_msg=''
-    def process(name, domain,key):
+    def process(name, domain):
         splitted = name.lower().split()
         f_name = splitted[0]
         l_name = splitted[1]
-        display_msg=  shortcut_using_api.generate_email(f_name, l_name, domain,key)
+        display_msg=  shortcut_using_api.generate_email(f_name, l_name, domain)
         return display_msg
 
 
     if request.method == 'POST':
         name = request.form['name']
         domain = request.form['domain']
-        key = request.form['apikey']
-        display_msg = process(name, domain,key)
+        display_msg = process(name, domain)
 
     return render_template('result.html', display_msg=display_msg)
 
