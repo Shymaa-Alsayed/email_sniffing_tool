@@ -32,18 +32,19 @@ def generate_email(f_name,l_name,domain,api_key):
         response = mbv.validate_email(gen_email)
         print(response)
         state=response['status']
+        remaining_credits=response['credits_available']
 
         if response is None:
-            print("Error connecting to API.\n")
+            return "Error connecting to API.\n"
         elif response['error_code'] == '':
             if state == 'True':
                 found_valid=True
                 valid_email=gen_email
                 save_to_csv(f_name,l_name,valid_email,domain)
-                return '{} is found and Deliverable'.format(gen_email)
+                return '{} is found and Deliverable'.format(gen_email), remaining_credits
         else:
-            print('error_code = ' + response['error_code'] + "\n")
-            print('error_message = ' + response['error_message'] + "\n")
+            return 'error_code = ' + response['error_code'] + "\n"+'error_message = ' + response['error_message'] + "\n"
+
 
     return 'No valid email found'
 
