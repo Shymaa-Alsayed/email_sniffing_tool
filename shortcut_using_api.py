@@ -5,7 +5,7 @@ found_valid = False
 valid_email = ''
 
 def save_to_csv(f_name, l_name,valid_email,domain):
-    with open("leads.csv", "a") as infile:
+    with open("leads.csv", "ab",newline="") as infile:
         writer = csv.writer(infile)
         line = [f_name, l_name,valid_email,domain]
         writer.writerow(line)
