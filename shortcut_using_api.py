@@ -1,15 +1,17 @@
 import csv
 import MailboxValidator
 
-
-api_key = '29ZR5ZE2TB6BJKYO7M8C'
-mbv = MailboxValidator.EmailValidation(api_key)
-
 found_valid = False
 valid_email = ''
 
+def save_to_csv(f_name, l_name,valid_email,domain):
+    with open("leads.csv", "a") as infile:
+        writer = csv.writer(infile)
+        line = [f_name, l_name,valid_email,domain]
+        writer.writerow(line)
+def generate_email(f_name,l_name,domain,api_key):
+    mbv = MailboxValidator.EmailValidation(api_key)
 
-def generate_email(f_name,l_name,domain):
     genereted_emails = []
 
     global found_valid
@@ -45,10 +47,6 @@ def generate_email(f_name,l_name,domain):
 
     return 'No valid email found'
 
-def save_to_csv(f_name, l_name,valid_email,domain):
-    with open("leads.csv", "a") as infile:
-        writer = csv.writer(infile)
-        line = [f_name, l_name,valid_email,domain]
-        writer.writerow(line)
+
 
 
