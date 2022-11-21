@@ -13,7 +13,7 @@ def generate_email(f_name,l_name,domain,api_key):
     mbv = MailboxValidator.EmailValidation(api_key)
 
     genereted_emails = []
-
+    credits=0
     global found_valid
     global valid_email
 
@@ -33,7 +33,7 @@ def generate_email(f_name,l_name,domain,api_key):
         print(response)
         state=response['status']
         remaining_credits=response['credits_available']
-
+        credits=remaining_credits
         if response is None:
             return "Error connecting to API.\n"
         elif response['error_code'] == '':
@@ -43,10 +43,10 @@ def generate_email(f_name,l_name,domain,api_key):
                 save_to_csv(f_name,l_name,valid_email,domain)
                 return '{} is found and Deliverable'.format(gen_email), remaining_credits
         else:
-            return 'error_code = ' + response['error_code'] + "\n"+'error_message = ' + response['error_message'] + "\n"
+            return 'error_code = ' + response['error_code'] + "\n"+'error_message = ' + response['error_message'],response['credits_available']
 
 
-    return 'No valid email found'
+    return 'No valid email found',credits
 
 
 
